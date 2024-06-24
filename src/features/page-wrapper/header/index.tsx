@@ -1,78 +1,147 @@
-import avatar from 'assets/images/avatar.jpg';
-import styles from './header.module.css';
-import { useState } from 'react';
+import clsx from 'clsx';
+import LikeIcon from 'assets/icons/Logo.svg';
+import logo from 'assets/images/Logo_for_a_website_about_Lake_Baikal.png';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
+import s from './header.module.css';
+import { FaBars } from 'react-icons/fa';
+import { RiAccountCircleLine, RiAccountCircleFill } from 'react-icons/ri';
+import { IoSearchOutline } from 'react-icons/io5';
+import { Link, useSearchParams } from 'react-router-dom';
+import { ROUTES } from 'router/routes';
+import ModalPopup from 'shared/components/ModalPopup';
+import { DarkModeButton } from 'shared/components/DarkModeButton';
+import { LoginButton } from './LoginButton';
 
-export const Header = () => {
-  const [iaOpen, setOpen] = useState();
+export const Header = ({ onSearchChange }: { onSearchChange?: (e: ChangeEvent<HTMLInputElement>) => void }) => {
+  
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isOpenSearchBar, setIsOpenSearchBar] = useState(false);
+  const [params, setParams] = useSearchParams();
+
+  const onChangeParams = () => {
+    params.set('modal', 'auth');
+    setParams(params);
+  };
+
+  // const onDeleteParams = () => {
+  //   params.delete('modal');
+  //   setParams(params);
+  // };
+
+  const toggleOpenSearchBar = () => {
+    setIsOpenSearchBar(isOpenSearchBar === true ? false : true);
+  };
+
+  //  if (params.get('modal') !== 'auth') return null;
+
+  const getParams = params.get('modal');
+
+  // const getTokenParams = params.get('token');
+
+  let isTokenExists;
+
+  useEffect(() => {
+    if (getParams === 'auth') {
+      setModalOpen(true);
+    } else setModalOpen(false);
+  }, [getParams]);
+
+  // if (getTokenParams === 'true') {
+  //   isTokenExists=true;
+  // } else {
+  //   isTokenExists=false;
+  // }
+
   return (
-    <header className={styles.headerContainer}>
-      <div className={styles.leftSection}>
-      <button className={styles.burgerButton}>{/* Иконка бургер-меню */}☰</button>
-        <div className={styles.logo}>БАЙКАЛ</div>
+    <header className={s.headerContainer}>
+      <div className={s.leftSection}>
+        <button className={s.burgerButton}>
+          <FaBars />
+        </button>
+        <Link to={ROUTES.ROOT} className={s.logo}>
+          <img className={s.logo_img} src={logo} alt="logo" />
+          <span className={s.logo_span}>Baikal Travel</span>
+        </Link>
+        <DarkModeButton />
       </div>
-      <div className={styles.centerSection}>
-        <input type="text" placeholder="Search" className={styles.searchInput} />
-        <button className={styles.newPostButton}>Найти</button>
+      <div className={s.centerSection}>
+        {isOpenSearchBar && (
+          <input type="text" placeholder="Поиск..." className={s.searchInput} onChange={onSearchChange} />
+        )}
+        {/* <button className={s.newPostButton}>Новый пост</button> */}
       </div>
-      <div className={styles.rightSection}>
-        <div className={styles.iconNotification}>🔔</div>
-        <ul className={styles.rightSectionList}>
-          <li className={styles.rightSectionListItem}>КАРТА</li>
-          <li className={styles.rightSectionListItem}>МЕСТА</li>
-          <li className={styles.rightSectionListItem}>ГАЛЕРЕЯ</li>
-          {/* <li className={styles.rightSectionListItem}>ВОПРОСЫ</li> */}
+      <div className={s.rightSection}>
+        <ul className={s.header_nav_list}>
+          <div className={s.searchSign}>
+            <IoSearchOutline onClick={() => toggleOpenSearchBar()} />
+          </div>
+          <Link to={ROUTES.MAP} className={s.header_nav_item}>
+            КАРТА
+          </Link>
+          <Link to={ROUTES.SIGHTS} className={s.header_nav_item}>
+            МЕСТА
+          </Link>
+          <Link to={ROUTES.GALLERY} className={s.header_nav_item}>
+            ГАЛЕРЕЯ
+          </Link>
         </ul>
-        {/* <div className={styles.iconMessage}>📧</div> */}
-        {/* <div className={styles.iconNotification}>🔔</div> */}
-        <div className={styles.avatar}>User Avatar</div>
-        {/* <button className={styles.headerMenuButton}>Выйти</button> */}
+
+        <div onClick={onChangeParams}>
+          <LoginButton />
+        </div>
+
+        <ModalPopup isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+
+        <div className={s.menu_container}></div>
       </div>
-      
     </header>
-
-    //     <header className={styles.headerContainer}>
-    //   <div className={styles.leftSection}>
-
-    //     <div className={styles.logo}>LOGOIPSUM</div>
-    //   </div>
-    //   <div className={styles.centerSection}>
-    //     <input type="text" placeholder="Search" className={styles.searchInput} />
-
-    //   </div>
-    //   <div className={styles.rightSection}>
-    //     <ul>
-    //       <li>
-    //         locations
-    //       </li>
-    //       <li>
-    //         climate
-    //       </li>
-    //       <li>
-    //         nature
-    //       </li>
-    //     </ul>
-
-    //   </div>
-    // </header>
-
-    // <header className={styles.headerContainer}>
-    //   <div className={styles.leftSection}>
-    //     <button className={styles.burgerButton}>{/* Иконка бургер-меню */}☰</button>
-    //     <div className={styles.logo}>Your Logo</div>
-    //   </div>
-    //   <div className={styles.centerSection}>
-    //     <input type="text" placeholder="Search" className={styles.searchInput} />
-    //     <button className={styles.newPostButton}>Новый пост</button>
-    //   </div>
-    //   <div className={styles.rightSection}>
-    //     <div className={styles.iconMessage}>📧</div>
-    //     <div className={styles.iconNotification}>🔔</div>
-    //     {/* <div className={styles.avatar}>User Avatar</div> */}
-
-    //     <img className={styles.avatar} src={avatar} alt="avatar" />
-
-    //     <button className={styles.newPostButton}>Выйти</button>
-    //   </div>
-    // </header>
   );
 };
+
+{
+  /* <div onClick={onOpenModal}>
+          <LoginButton />
+        </div> */
+}
+
+{
+  /* <LoginButton /> */
+}
+
+{
+  /* {isTokenExists && <LoginButton />}
+        {!isTokenExists && <div onClick={onChangeParams}>
+          <LoginButton />
+        </div>} */
+}
+
+{
+  /* <button className={s.avatar} onClick={() => setModalOpen(true)}>
+          <RiAccountCircleLine />
+        </button> */
+}
+
+{
+  /* <button className={s.avatar} onClick={() => onChangeParams()}>
+          <RiAccountCircleLine />
+        </button> */
+}
+
+{
+  /* <button onClick={onChangeParams}>Set params</button>
+
+        <button onClick={onDeleteParams}>Delete params</button> */
+}
+
+{
+  /* <ModalPopup/> */
+}
+
+{
+  /* <Modal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}>
+                <h2>Аккаунт</h2>
+                <p>Войдите в свой аккаунт</p>
+            </ Modal > */
+}

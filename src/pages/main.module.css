@@ -1,0 +1,141 @@
+.main {
+    padding: 0;
+    padding-bottom: 20px;
+    margin: 0;
+    /* margin-bottom: 20px; */
+    /* width: 100%;  */
+    /* background-color: #d9d4d4; */
+    background-color: #ffffff;
+}
+
+.main_banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: all 1s linear;
+}
+
+.main_banner_image {
+    padding: 0;
+    margin: 0;
+    width: 100%; 
+    transition: all 1s linear;
+}
+
+.main_banner_header   {
+    position: absolute;
+    /* top: 200px; */
+    /* top: calc(50%-200px); */
+    left: 200px;
+    color: var(--bunner-text);
+    margin-top: -100px;
+   
+}
+
+.main_banner_header > h1 {
+    color: var(--bunner-text);
+    font-size: 48px;
+    line-height: 1.3;
+    text-align: left;
+    margin: 0;
+}
+
+.main_header_description {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.second_section {
+    /* margin-top: 20px; */
+    /* color: #1D2130; */
+    /* background-color: var(--background-color); */
+    background-color: #ffffff;
+    margin-bottom: 1px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.third_section {
+    background-color: #f1f1f1;
+    margin-bottom: 1px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+    
+.second_section_container {
+    display: flex;
+    justify-content: flex-start;
+    margin: 0 auto;
+    width: 1140px; 
+    /* margin-left: 80px; */
+    /* background-color: #a1a1a1; */
+    /* background-color: #393939; */
+}
+
+.second_section_text {
+    /* margin-right: 50px; */
+    /* max-width: 600px; */
+    padding: 0;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 50px;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.mini_header_container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* margin-top: 20px; */
+    /* margin-left: -77px; */
+    
+}
+
+.mini_header {
+    background-color: var(--text-color);
+    height: 3px;
+    width: 58px;
+    margin-right: 20px; 
+    margin-bottom: 15px;  
+}
+
+.mini_header_p {
+    color: #1D2130;
+    font-size: 16px;
+}
+
+.header {
+    color: #1D2130;
+    font-size: 48px;
+    margin: 0;
+    margin-bottom: 20px;
+    color: var(--bunner-text);
+    text-align-last: left;
+    transition: all 0.7s;
+}
+
+.header:hover {
+    color: #009579;
+  }
+
+.p {
+    color: #1D2130;
+    text-align: left; 
+    font-size: 18px;
+}
+
+.second_section_image {
+    width: 600px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+}
+
+
+
+
+
+
+
+
