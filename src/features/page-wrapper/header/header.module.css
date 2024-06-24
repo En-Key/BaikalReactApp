@@ -1,0 +1,133 @@
+/* Header.module.css */
+
+.headerContainer {
+  position: sticky;
+  top: 0;
+  background-color: #36d8de;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+}
+
+.burgerButton {
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.logo {
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ddd;
+}
+
+.centerSection {
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.newPostButton {
+  background-color: #05aa53;
+  /* Зеленая кнопка */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  
+}
+
+.rightSectionList {
+  display: flex;
+  margin-left: auto;
+
+}
+
+.rightSectionListItem {
+  list-style-type: none;
+  font-size: 20px;
+  color: #ddd;
+}
+
+.rightSectionListItem:nth-child(n+2) {
+  margin-left: 20px;
+}
+
+.iconMessage,
+.iconNotification {
+  font-size: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  background-color: #ddd;
+  /* Серый цвет */
+  border-radius: 50%;
+  margin-right: 10px;
+  overflow: hidden;
+  /* Вставьте фактическое изображение пользователя как фон */
+  /* background-image: url('path-to-avatar-image.jpg'); */
+  /* background-size: cover; */
+}
+
+
+@media (max-width: 576px) {
+  .header__nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 220px;
+    height: 100%;
+    background-color: #fff;
+    border: 2px solid #05aa53;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s linear;
+  }
+
+  .header__nav-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    padding-left: 60px;
+  }
+
+  .header__nav-item {
+    margin: 10px 0;
+    font-weight: 500;
+    color: chocolate;
+
+  }
+
+  .header__nav-item:nth-child(n+2) {
+    margin-left: 0;
+  }
+
+}
